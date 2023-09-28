@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ head_title|safe_join(' | ') }}</title>
+  {{ page.head }}
+  {{ styles }}
+  {{ scripts }}
+</head>
+<body>
+  {{page.content}}
+</body>
+<footer>
+footer here
+{{page.footer}}
+</footer>
+</html>
