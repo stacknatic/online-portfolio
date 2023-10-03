@@ -9,3 +9,12 @@ function portfolio_two_theme_suggestions_block_alter(&$suggestions, $variables) 
     $suggestion = str_replace('portfolio_two_', 'stable9_', $suggestion);
   }
 }
+
+function portfolio_two_preprocess_page(array &$variables) {
+
+  // Load the site name out of configuration.
+  $config = \Drupal::config('system.site');
+  $variables['site_name'] = $config->get('name');
+  $variables['site_slogan'] = $config->get('slogan');
+
+}

@@ -1,136 +1,275 @@
-{#
-/**
- * @file
- * Olivero's theme implementation to display a single page.
- *
- * The doctype, html, head and body tags are not in this template. Instead they
- * can be found in the html.html.twig template normally located in the
- * core/modules/system directory.
- *
- * Available variables:
- *
- * General utility variables:
- * - base_path: The base URL path of the Drupal installation. Will usually be
- *   "/" unless you have installed Drupal in a sub-directory.
- * - is_front: A flag indicating if the current page is the front page.
- * - logged_in: A flag indicating if the user is registered and signed in.
- * - is_admin: A flag indicating if the user has permission to access
- *   administration pages.
- *
- * Site identity:
- * - front_page: The URL of the front page. Use this instead of base_path when
- *   linking to the front page. This includes the language domain or prefix.
- *
- * Page content (in order of occurrence in the default page.html.twig):
- * - node: Fully loaded node, if there is an automatically-loaded node
- *   associated with the page and the node ID is the second argument in the
- *   page's path (e.g. node/12345 and node/12345/revisions, but not
- *   comment/reply/12345).
- *
- * Regions:
- * - page.header: Items for the header region.
- * - page.highlighted: Items for the highlighted region.
- * - page.primary_menu: Items for the primary menu region.
- * - page.secondary_menu: Items for the secondary menu region.
- * - page.content: The main content of the current page.
- * - page.sidebar: Items for the first sidebar.
- * - page.featured_bottom_first: Items for the first featured bottom region.
- * - page.featured_bottom_second: Items for the second featured bottom region.
- * - page.footer_first: Items for the first footer column.
- * - page.footer_second: Items for the second footer column.
- * - page.breadcrumb: Items for the breadcrumb region.
- * - page.social: Items for the social region.
- *
- * @see template_preprocess_page()
- * @see html.html.twig
- */
-#}
+{% set current_url = url('<current>') %}
+<header>
 
-<div id="page-wrapper" class="page-wrapper">
-  <div id="page">
+<a href="/">  <img class="site-logo" src="/themes/contrib/stacknatic/scrollforth.jpeg" alt="logo"> </a>
+     <div class="logo">
+      
+      <span class="site-title"><a href="/">{{ site_name }}</a></span>
+       
+     </div>
+    <nav>
+      <ul class="nav-links">
+          <li>
+              <a href="/">Home</a>
+          </li>
+          
+          <li>
+            <a href="/blog/">Blog</a>
+          </li>
 
-    {% if page.header or page.primary_menu or page.secondary_menu %}
-      <header id="header" class="site-header" data-drupal-selector="site-header" role="banner">
-
-        {# Gets fixed by JavaScript at wide widths. #}
-        <div class="site-header__fixable" data-drupal-selector="site-header-fixable">
-          <div class="site-header__initial">
-            {# <button class="sticky-header-toggle" data-drupal-selector="sticky-header-toggle" role="switch" aria-controls="site-header__inner" aria-label="{{ 'Sticky header'|t }}" aria-checked="false"> #}
-              <span class="sticky-header-toggle__icon">
-                <span></span>
-                <span></span>
-                <span></span>
-              </span>
-            </button>
-          </div>
-
-          {# Needs to extend full width so box shadow will also extend. #}
-          <div id="site-header__inner" class="site-header__inner" data-drupal-selector="site-header-inner">
-            <div class="container site-header__inner__container">
-
-              {{ page.header }}
-
-              {% if page.primary_menu or page.secondary_menu %}
-                <div class="mobile-buttons" data-drupal-selector="mobile-buttons">
-                  <button class="mobile-nav-button" data-drupal-selector="mobile-nav-button" aria-label="{{ 'Main Menu'|t }}" aria-controls="header-nav" aria-expanded="false">
-                    <span class="mobile-nav-button__label">{{ 'Menu'|t }}</span>
-                    <span class="mobile-nav-button__icon"></span>
-                  </button>
-                </div>
-
-                <div id="header-nav" class="header-nav" data-drupal-selector="header-nav">
-                  {{ page.primary_menu }}
-                  {{ page.secondary_menu }}
-                </div>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      </header>
-    {% endif %}
-
-    <div id="main-wrapper" class="layout-main-wrapper layout-container">
-      <div id="main" class="layout-main">
-        <div class="main-content">
-          <a id="main-content" tabindex="-1"></a>
-          {{ page.hero }}
-          <div class="main-content__container container">
-            {{ page.highlighted }}
-            {{ page.breadcrumb }}
-
-            {% if page.sidebar %}
-              <div class="sidebar-grid grid-full">
-                <main role="main" class="site-main">
-                  {{ page.content_above }}
-                  {{ page.content }}
-                </main>
-
-                {{ page.sidebar }}
+          <li>
+            
+            <a href="/accounts/logout/" id="logout"> Log Out</a>
+             
+          </li>
+          <li>
+            <form method="post" action="/search-posts/">
+              <input type="hidden" name="csrfmiddlewaretoken" value="z7USv6s0xopkRoAG5E0CC7VWPqSKWQ4S9ppV9mv00rxbQuRzUUIxd7fydj7WwpRb">
+              <input class="search-box" type="search" placeholder="search" aria-label="Search"
+              name="searched">
+              <button class="article-search-button" type="submit">Search</button>
+      
+            </form>
+          </li>
+      </ul>
+      <div class="burger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>   
+      </div>
+  
+          <div class="sub-menu-wrap" id="subMenu">
+            
+              <div class="sub-menu">
+                <div class="user-info">
+                  <h3> Logged in as <span id="current-user">aceman</span></h3>
               </div>
-            {% else %}
-              <main role="main">
-                {{ page.content_above }}
-                {{ page.content }}
-              </main>
-            {% endif %}
-            {{ page.content_below }}
-          </div>
-        </div>
-        <div class="social-bar">
-          {{ page.social }}
-        </div>
-      </div>
-    </div>
+              <hr>
+              <a href="#" class="sub-menu-link">
+                
+                <p> <i class="fa-solid fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;My Profile</p>
+              </a>
+              
+              <a href="#" class="sub-menu-link">
+                
+                  <p> <i class="fa-solid fa-user-pen"></i>&nbsp;&nbsp;&nbsp;&nbsp;Edit Profile</p>
+              </a>
+              <a href="#" class="sub-menu-link">
+               <p><i class="fa-solid fa-gear"></i> &nbsp;&nbsp;&nbsp;&nbsp;Change E-mail</p>
+              </a>
+              <a href="#" class="sub-menu-link">
+               <p><i class="fa-solid fa-gear"></i> &nbsp;&nbsp;&nbsp;&nbsp;Change Password</p>
+              </a>
 
-    <footer class="site-footer bottom-footer">
-      <div class="site-footer__inner container">
-        {{ page.footer_top }}
-        {{page.footer}}
-        {{ page.footer_bottom }}
-      </div>
+              <a href="/contact/" class="sub-menu-link">
+                <p><i class="fa-solid fa-message"></i>&nbsp;&nbsp;&nbsp;&nbsp;Get in Touch</p>
+              </a><a href="#" class="sub-menu-link">
+
+              <a href="/logout/"> <i class="fa-solid fa-right-from-bracket"></i>&nbsp;&nbsp;&nbsp;&nbsp;Log Out</a>
+              </a>
+            </div>
+            
+  </nav>
+  
+  
+    <span id="toggle-avatar">
+    <img src="/media/WEBP/13/4934ca/images/avatar.webp" class="user-photo" alt="user avatar" width="40" height="40">
+ 
+    </span>
+  
+  
+ 
+
+
+</header>
+
+    
+
+    
+    
+{% if node.title.value %}
+<div class="breadcrumbs unique-breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <span class="breadcrumbs-list" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a itemprop="item" href="/"><span itemprop="name">Home</span></a>
+          <meta itemprop="position"  content="1" />
+
+        </span> /
+        <span class="breadcrumbs-list" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name">{{node.title.value}}</span>
+          <meta itemprop="position" content="2" />
+        </span>
+  </div>
+{% endif %}
+      
+
+
+    <main>
+        
+<div class="content-container">
+  
+  <section class="main-content profile-main-content">
+ 
+    {{page.content}}
+    
+    {# <a class='contact-member action-button' href="mailto:michaelakerele@hotmail.co.uk">Contact</a> #}
+    
+
+  </section>
+  <section class="content-sidebar profile-sidebar">
+    <img src="http://myportfolio.com/sites/default/files/inline-images/Michael.jpg" class="profile-photo" alt="profile photo">
+    
+    
+    <h1 class="developer-name-h1">Michael Akerele</h1>
+    
+    
+    
+    <small><center>Full Stack Developer<center><span></span>
+    </small>
+    
+    
+    <div class="profile-stats">
+      
+      <a href="#"class="action-button">Consult</a>
+      <!-- <button class="action-button">Follow</button> -->
+      
+    </div> 
+  <div>{{page.sidebar_second}}</div>
+  </section>
+  
+
+
+    <div class="social-share-buttons">
+
+    <span><b>Share:&nbsp;</b></span>
+
+    <a class="social-share" href="mailto:?subject=-Nigerian Law Forum&body=https://nigerianlawforum.com/section-134-of-the-1999-constitution/" aria-label="Email share">
+
+        Email
+    </a>
+    </div>
+</div>
+
+
+        <div class="cookie-banner">
+            <h3 class="centered-text">I value your privacy</h3>
+            <small>I use cookies and similar technologies. Some of the cookies are necessary for the functioning of this website and others are used to ensure the security of michaelakerele.io and to prevent abuse. By using continuing, you agree to the use of cookies in accordance the Privacy Policy of michaelakerele.io. You can learn more about the use of cookies in the <a href="/privacy-policy/">Privacy Policy</a>. </small>
+            <div class="cookie-buttons-container">
+                <button class="action-button cookie-consent">OK</button>
+
+            </div>
+        </div>
+    </main>
+    
+    
+
+
+<div class="start-live-chat-modal">
+    <h2><strong>Chat with me</strong></h2>
+    <img class="modal-site-logo" src="/themes/contrib/stacknatic/scrollforth.jpeg" alt="logo">
+        <img class="live-chat-admin-avatar" src="/media/WEBP/be/42dca6/images/admin.webp" alt="admin">
+        <button class="action-button close-live-chat-form">X</button>
+        <label for="room-name-input">Hello, let me know if you need help.</label>
+        <input id="room-name-input" type="text" size="100" placeholder="Type your name to start conversation" maxlength="60" required>
+        <input id="room-name-submit" class="action-button" type="button" value="Start Conversation">
+</div>
+
+
+    <script src="/static/js/sanitize.js"></script>
+    <script src="/static/js/randomCharacters.js"></script>
+    <script src="/static/js/liveChat.js"></script>
+
+    
+    <button class="ChatWithMe active">&#128488;
+    </button>
+
+    
+    <footer class="footer"> 
+    <div><a href="/privacy-policy/">Privacy-Policy</a></div>
+    <a href="/terms-of-use/">Terms-of-Use</a> | <a href="/contact/">Contact</a> 
+    
+    
+    <button class="gototop">&#x2191;</button>
+
     </footer>
 
-    <div class="overlay" data-drupal-selector="overlay"></div>
+<script nonce="Q3YYA90CPlq/uf8SbP7bEw==">
+const goUP = document.querySelector(".gototop");
+window.addEventListener('scroll', goToTop);
+function goToTop(){
+    if (this.pageYOffset > 100){
+        goUP.classList.add('active');
+    }
+    else{
+        goUP.classList.remove('active');
+    }
+}
+const goUp = () => {
+    
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    
+  };
+goUP.addEventListener('click', goUp)
+</script>
 
-  </div>
-</div>
+    
+    <script src="/static/js/nav.js"></script>
+    <script nonce="Q3YYA90CPlq/uf8SbP7bEw==">
+        const LetsChatButton = document.querySelector(".ChatWithMe");
+    
+        const LetsChat = () => {
+                startLiveChatForm.classList.add('active');  
+        };
+    
+        LetsChatButton.addEventListener('click', LetsChat)
+    </script>
+    
+    
+    
+    <script nonce="Q3YYA90CPlq/uf8SbP7bEw==">
+        const avatar = document.querySelector('#toggle-avatar')    
+        const subMenu = document.getElementById("subMenu");
+
+        const toggleMenu = () =>{
+            subMenu.classList.toggle("open-menu");
+        }
+
+        avatar.addEventListener('click', toggleMenu)
+
+    </script>
+    
+    <script nonce="Q3YYA90CPlq/uf8SbP7bEw==">
+        const consentButton = document.querySelector('.cookie-consent')
+        const cookieBanner = document.querySelector('.cookie-banner')
+        const banner = () =>{
+
+            if (typeof(Storage) !== "undefined"){
+                
+                if(!localStorage.getItem('cookieConsent') && window.location.href!='https://nigerianlawforum.com/privacy-policy/'){
+                    cookieBanner.classList.add('active')
+                    cookieBanner.style.animation = 'banner 2s'
+
+                    consentButton.addEventListener('click', consent)
+                }
+                
+                function consent(){
+                    
+                    localStorage.setItem('cookieConsent', 'consented')
+                    cookieBanner.classList.remove('active')
+                }
+            }
+        }
+        setTimeout(banner, 700)
+    </script>
+
+<script nonce="Q3YYA90CPlq/uf8SbP7bEw==">
+  const contact = document.querySelector('.contact-member');
+  const loggedIn = "True"
+  const checkStatus = (e) => {
+    e.preventDefault();
+      alert("You need to be logged in. You can create a free account if you don't have one.")
+  }
+  if(loggedIn=='False'){
+    contact.addEventListener('click', checkStatus)
+  }
+</script>
