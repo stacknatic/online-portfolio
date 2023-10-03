@@ -1,7 +1,16 @@
 {% set current_url = url('<current>') %}
+
+{%
+set author_pic = {
+'#theme': 'image_style',
+'#style_name': 'large',
+'#uri': profile.uid.entity.user_picture.entity.uri.value,
+'#attributes': { class: 'authorImg' },
+}
+%}
 <header>
 
-<a href="/">  <img class="site-logo" src="/themes/contrib/stacknatic/scrollforth.jpeg" alt="logo"> </a>
+<a href="/">  <img class="site-logo" src="/themes/contrib/portfolio_two/images/icon.png" alt="logo"> </a>
      <div class="logo">
       
       <span class="site-title"><a href="/">{{ site_name }}</a></span>
@@ -16,20 +25,33 @@
           <li>
             <a href="/blog/">Blog</a>
           </li>
+          {% if logged_in %}
 
           <li>
             
-            <a href="/accounts/logout/" id="logout"> Log Out</a>
+            <a href="/user/logout" id="logout"> Log Out</a>
              
           </li>
-          <li>
+          {% else %}
+           <li>
+            
+            <a href="/user/login/" id="logout"> Log In</a>
+             
+          </li>
+          {% endif %}
+          
+          {# <li>
             <form method="post" action="/search-posts/">
-              <input type="hidden" name="csrfmiddlewaretoken" value="z7USv6s0xopkRoAG5E0CC7VWPqSKWQ4S9ppV9mv00rxbQuRzUUIxd7fydj7WwpRb">
+             
               <input class="search-box" type="search" placeholder="search" aria-label="Search"
               name="searched">
               <button class="article-search-button" type="submit">Search</button>
       
             </form>
+          </li> #}
+          <li>
+              {{page.header}}
+
           </li>
       </ul>
       <div class="burger">
@@ -71,22 +93,13 @@
             
   </nav>
   
-  
-    <span id="toggle-avatar">
-    <img src="/media/WEBP/13/4934ca/images/avatar.webp" class="user-photo" alt="user avatar" width="40" height="40">
- 
-    </span>
-  
-  
- 
-
+    {# <span id="toggle-avatar">
+    <img src="" class="user-photo" alt="user avatar" width="40" height="40">
+    </span> #}
+    {# {{page.header}} #}
 
 </header>
-
-    
-
-    
-    
+  
 {% if node.title.value %}
 <div class="breadcrumbs unique-breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
         <span class="breadcrumbs-list" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -108,15 +121,14 @@
 <div class="content-container">
   
   <section class="main-content profile-main-content">
- 
     {{page.content}}
-    
-    {# <a class='contact-member action-button' href="mailto:michaelakerele@hotmail.co.uk">Contact</a> #}
-    
 
+    {{author_pic}}
+    
+{{user.user.user_profile}}
   </section>
   <section class="content-sidebar profile-sidebar">
-    <img src="http://myportfolio.com/sites/default/files/inline-images/Michael.jpg" class="profile-photo" alt="profile photo">
+    <img src="/sites/default/files/inline-images/Michael.jpg" class="profile-photo" alt="profile photo">
     
     
     <h1 class="developer-name-h1">Michael Akerele</h1>
@@ -142,7 +154,7 @@
 
     <span><strong class="lighten">Share:&nbsp;</strong></span>
 
-    <a class="social-share action-button" href="mailto:?subject=-Nigerian Law Forum&body=https://nigerianlawforum.com/section-134-of-the-1999-constitution/" aria-label="Email share">
+    <a class="social-share action-button" href="mailto:?subject={{node.title.value}}&body={{current_url}}" aria-label="Email share">
 
         Email
     </a>
@@ -165,8 +177,8 @@
 
 <div class="start-live-chat-modal">
     <h2><strong>Chat with me</strong></h2>
-    <img class="modal-site-logo" src="/themes/contrib/stacknatic/scrollforth.jpeg" alt="logo">
-        <img class="live-chat-admin-avatar" src="/media/WEBP/be/42dca6/images/admin.webp" alt="admin">
+    <img class="modal-site-logo" src="/themes/contrib/portfolio_two/images/icon.png" alt="logo">
+        <img class="live-chat-admin-avatar" src="/sites/default/files/inline-images/Michael.jpg" alt="admin">
         <button class="action-button close-live-chat-form">X</button>
         <label for="room-name-input">Hello, let me know if you need help.</label>
         <input id="room-name-input" type="text" size="100" placeholder="Type your name to start conversation" maxlength="60" required>
@@ -245,7 +257,7 @@ goUP.addEventListener('click', goUp)
 
             if (typeof(Storage) !== "undefined"){
                 
-                if(!localStorage.getItem('cookieConsent') && window.location.href!='https://nigerianlawforum.com/privacy-policy/'){
+                if(!localStorage.getItem('cookieConsent') && window.location.href!='/privacy-policy/'){
                     cookieBanner.classList.add('active')
                     cookieBanner.style.animation = 'banner 2s'
 

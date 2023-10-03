@@ -101,6 +101,7 @@ p img, figure img, .wp-block-image img{
 
 .breadcrumbs span{
     color: lightblue;
+    margin-top: 1rem;
 }
 .lighten{
     color: var(--light)
@@ -197,7 +198,9 @@ body {
     background-repeat: no-repeat;
     background-color: rgba(0, 0, 0, .5);
     background-size: cover;
+    background-position: fixed;
     background-blend-mode: darken;
+
 }
 
 
@@ -486,6 +489,42 @@ padding: 2px 16px;
 
 /***** BEGIN FORMS *****/
 /*drupal */
+#user-login-form {
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+}
+#user-login-form input{
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+#user-login-form input[type="submit"]{
+    border-radius: 20px;
+    padding: 0.5rem;
+    background-color: green;
+    color: #fff;
+    font-size: 1rem;
+    width: 150px;
+}
+#search-block-form{
+    display: flex;
+    gap: 1rem;
+    padding: 0 1rem;
+}
+#search-block-form button{
+    background-color: #000;
+    border-radius: 20px;
+    padding: 0.5rem;
+}
+#search-block-form input{
+    border-radius: 20px;
+    padding: 0.5rem;
+}
 .contact-form{
     display: flex!important;
     justify-self: center!important;
@@ -1151,6 +1190,7 @@ header a{
 }
 .breadcrumbs span{
     color: #fff;
+    font-size: 1.125em;
 }
 
 .breadcrumbs-list {

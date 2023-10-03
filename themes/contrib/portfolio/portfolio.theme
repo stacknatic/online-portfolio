@@ -70,7 +70,7 @@ function portfolio_preprocess_image_widget(array &$variables) {
 }
 
 // new
-function yourtheme_preprocess_page(array &$variables) {
+function portfolio_preprocess_page(array &$variables) {
 
   // Load the site name out of configuration.
   $config = \Drupal::config('system.site');
