@@ -102,6 +102,9 @@ p img, figure img, .wp-block-image img{
 .breadcrumbs span{
     color: lightblue;
 }
+.lighten{
+    color: var(--light)
+}
 .page-hero{
     color: lightblue;
 }
@@ -190,8 +193,14 @@ p img, figure img, .wp-block-image img{
 body {
     /* margin-top: 6rem; */
     position: relative;
-    background-color: var(--page-background);
+    background: url('/themes/contrib/portfolio_two/images/wallpaper.jpeg');
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, .5);
+    background-size: cover;
+    background-blend-mode: darken;
 }
+
+
 .content-container{
     display: flex;
     flex-wrap: wrap;
@@ -215,6 +224,7 @@ body {
     flex-grow: 0.5;
     background-color: var(--content-background);
     width: 100%;
+    border-radius: 10px;
 }
 .profile-main-content{
     border-top-right-radius: 15px;
@@ -718,6 +728,12 @@ input#profile_image-clear_id {
     margin: auto;
     display: block;
 }
+.social-share-buttons a{
+    font-weight: bold;
+    color: var(--light);
+    border-color: var(--light);
+    padding: 0.5rem;
+}
 
 #sharebTn button {
     display: none;
@@ -1131,6 +1147,10 @@ header a{
 
 .breadcrumbs {
     text-align: center;
+    color: #fff;
+}
+.breadcrumbs span{
+    color: #fff;
 }
 
 .breadcrumbs-list {
