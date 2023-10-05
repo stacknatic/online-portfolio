@@ -26,9 +26,7 @@ set author_pic = {
             <a href="/blog/">Blog</a>
           </li>
           {% if logged_in %}
-
           <li>
-            
             <a href="/user/logout" id="logout"> Log Out</a>
              
           </li>
@@ -185,15 +183,21 @@ set author_pic = {
         <input id="room-name-submit" class="action-button" type="button" value="Start Conversation">
 </div>
 
-
-    <script src="/static/js/sanitize.js"></script>
-    <script src="/static/js/randomCharacters.js"></script>
-    <script src="/static/js/liveChat.js"></script>
-
     
     <button class="ChatWithMe active">&#128488;
     </button>
 
+<div class="chat-modal-container">
+    <div class="chat-modal-container-inner">
+
+        <textarea id="chat-log" cols="100" rows="20" placeholder="Just a moment ..." readonly></textarea>
+        <input id="chat-message-input" type="text" size="500">
+        <input id="chat-message-submit" class="action-button" type="button" value="Send">
+        <span id="typing-indicator"></span>
+        <span id="room-participant" hidden>{% if logged_in %}Admin{% else %}Me{% endif %}</span>
+    </div>
+
+</div>
     
     <footer class="footer"> 
     <div><a href="/privacy-policy/">Privacy-Policy</a></div>
@@ -284,4 +288,57 @@ goUP.addEventListener('click', goUp)
   if(loggedIn=='False'){
     contact.addEventListener('click', checkStatus)
   }
+</script>
+
+<script>
+// connect to webSocket
+const newRoomName = localStorage.getItem('room-name');
+const chatLog = document.querySelector('#chat-log');
+const chatMessageInput = document.querySelector('#chat-message-input');
+const chatMessageSubmit = document.querySelector('#chat-message-submit');
+const typingIndicator = document.querySelector('#typing-indicator');
+const roomParticipant = document.querySelector('#room-participant');
+
+const chatSocket = new WebSocket(`ws://localhost:8000/ws/chat/${newRoomName}/`);
+
+chatSocket.addEventListener('message', (event) => {
+    const data = JSON.parse(event.data);
+    typingIndicator.textContent = data.typing && data.participant !== roomParticipant.textContent
+        ? `${data.participant} is typing...`
+        : '';
+    if (!data.typing) {
+        chatLog.value += `${data.participant}: ${data.message}\n`;
+    }
+});
+
+chatSocket.addEventListener('close', () => {
+    console.error('Chat socket closed unexpectedly');
+});
+
+chatMessageInput.focus();
+
+chatMessageInput.addEventListener('keyup', (event) => {
+    if (event.keyCode === 13) {
+        chatMessageSubmit.click();
+    } else {
+        chatSocket.send(JSON.stringify({
+            'typing': true,
+            'participant': '{{request.user}}' === 'AnonymousUser' ? 'Me' : 'Admin',
+        }));
+    }
+});
+
+chatMessageSubmit.addEventListener('click', () => {
+    const messageInputDom = chatMessageInput;
+    const message = messageInputDom.value;
+    const participant = '{{request.user}}' === 'AnonymousUser' ? 'Me' : 'Admin';
+
+    chatSocket.send(JSON.stringify({
+        'message': message,
+        'participant': participant,
+    }));
+
+    messageInputDom.value = '';
+});
+
 </script>
