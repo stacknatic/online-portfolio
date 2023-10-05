@@ -323,7 +323,7 @@ chatMessageInput.addEventListener('keyup', (event) => {
     } else {
         chatSocket.send(JSON.stringify({
             'typing': true,
-            'participant': '{{request.user}}' === 'AnonymousUser' ? 'Me' : 'Admin',
+            'participant': '{{logged_in}}' ? 'Admin' : 'Me',
         }));
     }
 });
@@ -331,7 +331,7 @@ chatMessageInput.addEventListener('keyup', (event) => {
 chatMessageSubmit.addEventListener('click', () => {
     const messageInputDom = chatMessageInput;
     const message = messageInputDom.value;
-    const participant = '{{request.user}}' === 'AnonymousUser' ? 'Me' : 'Admin';
+    const participant = '{{logged_in}}' ? 'Admin' : 'Me';
 
     chatSocket.send(JSON.stringify({
         'message': message,
