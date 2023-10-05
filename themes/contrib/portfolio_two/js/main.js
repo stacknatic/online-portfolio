@@ -96,6 +96,7 @@ function createRoom(cleanedName, randomC) {
             localStorage.setItem('room-name', randomC);
             chatModal.classList.add('active');
             startLiveChatForm.classList.remove('active');
+            openWebSocket();
             // window.location.pathname = '/chat/' + randomC + '/';
         } else if (data.feedback) {
             alert(data.feedback);

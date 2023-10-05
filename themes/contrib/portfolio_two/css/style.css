@@ -526,6 +526,8 @@ padding: 2px 16px;
     padding: 0.5rem;
 }
 .contact-form{
+    max-width: 600px!important;
+    width: 100%!important;
     display: flex!important;
     justify-self: center!important;
     align-items: center!important;
@@ -987,10 +989,33 @@ select#id_subscribe_to_notification {
     width: 95%;
     gap: 1rem;
     margin-top: 1rem;
+    position: relative;
+    border-radius: 5px;
+    padding: 0.2rem;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 94%); 
 }
+
 .chat-modal-container-inner .action-button{
-    width: 200px;
-    padding: 0.4rem;
+    width: max-content;
+    margin: auto;
+    display: block;
+    padding: 0.5rem;
+    background-color: green;
+    color: #fff;
+    border: none;
+}
+.chat-modal-send{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: #0a5397;
+    padding: 0.3rem;
+    border-radius: 5px;
+}
+#typing-indicator{
+    color: #fff;
 }
 .chat-container, .live-chat-form{
     display: flex;
@@ -1007,6 +1032,7 @@ select#id_subscribe_to_notification {
     font-family: inherit;
     border-radius: 10px;
     line-height: 1.2rem;
+    width: 100%;
 }
 #chat-message-input, #room-name-input{
     padding: 0.5rem;
@@ -1083,6 +1109,17 @@ select#id_subscribe_to_notification {
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
+}
+.close-chat{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: -0.5rem;
+    right: -0.5rem;
+    background-color: red;
+    color: #fff;
+    border-radius: 50%;
+    border: none;
 }
 .close-live-chat-form{
     position: absolute;

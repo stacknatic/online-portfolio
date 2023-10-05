@@ -189,10 +189,12 @@ set author_pic = {
 
 <div class="chat-modal-container">
     <div class="chat-modal-container-inner">
-
+        <button class="close-chat">X</button>
         <textarea id="chat-log" cols="100" rows="20" placeholder="Just a moment ..." readonly></textarea>
-        <input id="chat-message-input" type="text" size="500">
-        <input id="chat-message-submit" class="action-button" type="button" value="Send">
+        <div class="chat-modal-send">
+          <input id="chat-message-input" type="text" size="500">
+          <input id="chat-message-submit" class="action-button" type="button" value="Send">
+        </div>
         <span id="typing-indicator"></span>
         <span id="room-participant" hidden>{% if logged_in %}Admin{% else %}Me{% endif %}</span>
     </div>
@@ -208,7 +210,7 @@ set author_pic = {
 
     </footer>
 
-<script nonce="Q3YYA90CPlq/uf8SbP7bEw==">
+<script>
 const goUP = document.querySelector(".gototop");
 window.addEventListener('scroll', goToTop);
 function goToTop(){
@@ -228,9 +230,7 @@ const goUp = () => {
 goUP.addEventListener('click', goUp)
 </script>
 
-    
-    <script src="/static/js/nav.js"></script>
-    <script nonce="Q3YYA90CPlq/uf8SbP7bEw==">
+    <script>
         const LetsChatButton = document.querySelector(".ChatWithMe");
     
         const LetsChat = () => {
@@ -242,7 +242,7 @@ goUP.addEventListener('click', goUp)
     
     
     
-    <script nonce="Q3YYA90CPlq/uf8SbP7bEw==">
+    {# <script>
         const avatar = document.querySelector('#toggle-avatar')    
         const subMenu = document.getElementById("subMenu");
 
@@ -252,9 +252,9 @@ goUP.addEventListener('click', goUp)
 
         avatar.addEventListener('click', toggleMenu)
 
-    </script>
+    </script> #}
     
-    <script nonce="Q3YYA90CPlq/uf8SbP7bEw==">
+    <script>
         const consentButton = document.querySelector('.cookie-consent')
         const cookieBanner = document.querySelector('.cookie-banner')
         const banner = () =>{
@@ -278,7 +278,7 @@ goUP.addEventListener('click', goUp)
         setTimeout(banner, 700)
     </script>
 
-<script nonce="Q3YYA90CPlq/uf8SbP7bEw==">
+<script>
   const contact = document.querySelector('.contact-member');
   const loggedIn = "True"
   const checkStatus = (e) => {
@@ -290,55 +290,81 @@ goUP.addEventListener('click', goUp)
   }
 </script>
 
+
+
+
 <script>
-// connect to webSocket
-const newRoomName = localStorage.getItem('room-name');
-const chatLog = document.querySelector('#chat-log');
-const chatMessageInput = document.querySelector('#chat-message-input');
-const chatMessageSubmit = document.querySelector('#chat-message-submit');
-const typingIndicator = document.querySelector('#typing-indicator');
-const roomParticipant = document.querySelector('#room-participant');
+        // open websocket connection
 
-const chatSocket = new WebSocket(`ws://localhost:8000/ws/chat/${newRoomName}/`);
+        const chatLog = document.querySelector('#chat-log');
+        const chatMessageInput = document.querySelector('#chat-message-input');
+        const chatMessageSubmit = document.querySelector('#chat-message-submit');
+        const typingIndicator = document.querySelector('#typing-indicator');
+        const roomParticipant = document.querySelector('#room-participant');
+        const closeChat = document.querySelector('.close-chat')
+        const chatModal = document.querySelector('.chat-modal-container');
 
-chatSocket.addEventListener('message', (event) => {
-    const data = JSON.parse(event.data);
-    typingIndicator.textContent = data.typing && data.participant !== roomParticipant.textContent
-        ? `${data.participant} is typing...`
-        : '';
-    if (!data.typing) {
-        chatLog.value += `${data.participant}: ${data.message}\n`;
-    }
-});
+        function openWebSocket(){
 
-chatSocket.addEventListener('close', () => {
-    console.error('Chat socket closed unexpectedly');
-});
+        const newRoomName = localStorage.getItem('room-name');
 
-chatMessageInput.focus();
 
-chatMessageInput.addEventListener('keyup', (event) => {
-    if (event.keyCode === 13) {
-        chatMessageSubmit.click();
-    } else {
-        chatSocket.send(JSON.stringify({
-            'typing': true,
-            'participant': '{{logged_in}}' ? 'Admin' : 'Me',
-        }));
-    }
-});
+        const chatSocket = new WebSocket(`ws://localhost:8000/ws/chat/${newRoomName}/`) 
 
-chatMessageSubmit.addEventListener('click', () => {
-    const messageInputDom = chatMessageInput;
-    const message = messageInputDom.value;
-    const participant = '{{logged_in}}' ? 'Admin' : 'Me';
+        chatSocket.addEventListener('message', (event) => {
+            const data = JSON.parse(event.data);
+            typingIndicator.textContent = data.typing && data.participant !== roomParticipant.textContent
+            ? `${data.participant} is typing...`
+            : '';
+            if (!data.typing) {
+                chatLog.value += `${data.participant}: ${data.message}\n`;
+            }
+        });
+        
+        chatSocket.addEventListener('close', () => {
+            console.error('Chat socket closed unexpectedly');
+        });
+        
+        chatMessageInput.focus();
+        
+        chatMessageInput.addEventListener('keyup', (event) => {
+            if (event.keyCode === 13) {
+                chatMessageSubmit.click();
+            } else {
+                chatSocket.send(JSON.stringify({
+                    'typing': true,
+                    'participant': '{{logged_in}}' ? 'Admin' : 'Me',
+                }));
+            }
+        });
+        
+        chatMessageSubmit.addEventListener('click', () => {
+            const messageInputDom = chatMessageInput;
+            const message = messageInputDom.value;
+            const participant = '{{logged_in}}' ? 'Admin' : 'Me';
+            
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'participant': participant,
+            }));
+            
+            messageInputDom.value = '';
+        });
 
-    chatSocket.send(JSON.stringify({
-        'message': message,
-        'participant': participant,
-    }));
-
-    messageInputDom.value = '';
-});
-
-</script>
+        }
+         function endChat() {
+        let text = "The chat will be closed!\nPress Cancel to continue with chat or OK to end chat.";
+        if (confirm(text) == true) {
+            chatModal.classList.remove('active');
+            if(localStorage.getItem('room-name')){
+                localStorage.removeItem('room-name')
+            };
+            LetsChatButton.classList.add('active');
+        } 
+        else {
+            return
+        }
+        }
+        
+        closeChat.addEventListener('click', endChat);
+    </script>
