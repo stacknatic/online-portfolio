@@ -195,6 +195,8 @@ set author_pic = {
           <input id="chat-message-input" type="text" size="500">
           <input id="chat-message-submit" class="action-button" type="button" value="Send">
         </div>
+        <audio id="notificationSound" src="themes/contrib/portfolio_two/sounds/notification.mp3" preload="auto"></audio>
+
         <span id="typing-indicator"></span>
         <span id="room-participant" hidden>{% if logged_in %}Admin{% else %}Me{% endif %}</span>
     </div>
@@ -318,7 +320,10 @@ goUP.addEventListener('click', goUp)
             : '';
             if (!data.typing) {
                 chatLog.value += `${data.participant}: ${data.message}\n`;
-            }
+            };
+            if (data.message && data.participant !== roomParticipant.textContent) {
+                notificationSound.play();
+            };
         });
         
         chatSocket.addEventListener('close', () => {

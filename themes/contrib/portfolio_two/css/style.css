@@ -1014,6 +1014,9 @@ select#id_subscribe_to_notification {
     padding: 0.3rem;
     border-radius: 5px;
 }
+#notificationSound {
+    display: none;
+}
 #typing-indicator{
     color: #fff;
 }
