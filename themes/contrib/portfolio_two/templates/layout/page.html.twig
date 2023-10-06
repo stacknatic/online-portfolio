@@ -1,0 +1,370 @@
+{% set current_url = url('<current>') %}
+
+{%
+set author_pic = {
+'#theme': 'image_style',
+'#style_name': 'large',
+'#uri': profile.uid.entity.user_picture.entity.uri.value,
+'#attributes': { class: 'authorImg' },
+}
+%}
+<header>
+
+<a href="/">  <img class="site-logo" src="/themes/contrib/portfolio_two/images/icon.png" alt="logo"> </a>
+     <div class="logo">
+      
+      <span class="site-title"><a href="/">{{ site_name }}</a></span>
+       
+     </div>
+    <nav>
+      <ul class="nav-links">
+          <li>
+              <a href="/">Home</a>
+          </li>
+          
+          <li>
+            <a href="/blog/">Blog</a>
+          </li>
+          {% if logged_in %}
+          <li>
+            <a href="/user/logout" id="logout"> Log Out</a>
+             
+          </li>
+          {% else %}
+           <li>
+            
+            <a href="/user/login/" id="logout"> Log In</a>
+             
+          </li>
+          {% endif %}
+          
+          {# <li>
+            <form method="post" action="/search-posts/">
+             
+              <input class="search-box" type="search" placeholder="search" aria-label="Search"
+              name="searched">
+              <button class="article-search-button" type="submit">Search</button>
+      
+            </form>
+          </li> #}
+          <li>
+              {{page.header}}
+
+          </li>
+      </ul>
+      <div class="burger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>   
+      </div>
+  
+          <div class="sub-menu-wrap" id="subMenu">
+            
+              <div class="sub-menu">
+                <div class="user-info">
+                  <h3> Logged in as <span id="current-user">aceman</span></h3>
+              </div>
+              <hr>
+              <a href="#" class="sub-menu-link">
+                
+                <p> <i class="fa-solid fa-user"></i>&nbsp;&nbsp;&nbsp;&nbsp;My Profile</p>
+              </a>
+              
+              <a href="#" class="sub-menu-link">
+                
+                  <p> <i class="fa-solid fa-user-pen"></i>&nbsp;&nbsp;&nbsp;&nbsp;Edit Profile</p>
+              </a>
+              <a href="#" class="sub-menu-link">
+               <p><i class="fa-solid fa-gear"></i> &nbsp;&nbsp;&nbsp;&nbsp;Change E-mail</p>
+              </a>
+              <a href="#" class="sub-menu-link">
+               <p><i class="fa-solid fa-gear"></i> &nbsp;&nbsp;&nbsp;&nbsp;Change Password</p>
+              </a>
+
+              <a href="/contact/" class="sub-menu-link">
+                <p><i class="fa-solid fa-message"></i>&nbsp;&nbsp;&nbsp;&nbsp;Get in Touch</p>
+              </a><a href="#" class="sub-menu-link">
+
+              <a href="/logout/"> <i class="fa-solid fa-right-from-bracket"></i>&nbsp;&nbsp;&nbsp;&nbsp;Log Out</a>
+              </a>
+            </div>
+            
+  </nav>
+  
+    {# <span id="toggle-avatar">
+    <img src="" class="user-photo" alt="user avatar" width="40" height="40">
+    </span> #}
+    {# {{page.header}} #}
+
+</header>
+  
+{% if node.title.value %}
+<div class="breadcrumbs unique-breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <span class="breadcrumbs-list" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a itemprop="item" href="/"><span itemprop="name">Home</span></a>
+          <meta itemprop="position"  content="1" />
+
+        </span> /
+        <span class="breadcrumbs-list" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <span itemprop="name">{{node.title.value}}</span>
+          <meta itemprop="position" content="2" />
+        </span>
+  </div>
+{% endif %}
+      
+
+
+    <main>
+        
+<div class="content-container">
+  
+  <section class="main-content profile-main-content">
+    {{page.content}}
+
+    {{author_pic}}
+    
+{{user.user.user_profile}}
+  </section>
+  <section class="content-sidebar profile-sidebar">
+    <img src="/sites/default/files/inline-images/Michael.jpg" class="profile-photo" alt="profile photo">
+    
+    
+    <h1 class="developer-name-h1">Michael Akerele</h1>
+    
+    
+    
+    <small><center>Full Stack Developer<center><span></span>
+    </small>
+    
+    
+    <div class="profile-stats">
+      
+      <a href="/contact"class="action-button">Consult</a>
+      <!-- <button class="action-button">Follow</button> -->
+      
+    </div> 
+  <div>{{page.sidebar_second}}</div>
+  </section>
+  
+
+
+    <div class="social-share-buttons">
+
+    <span><strong class="lighten">Share:&nbsp;</strong></span>
+
+    <a class="social-share action-button" href="mailto:?subject={{node.title.value}}&body={{current_url}}" aria-label="Email share">
+
+        Email
+    </a>
+    </div>
+</div>
+
+
+        <div class="cookie-banner">
+            <h3 class="centered-text">I value your privacy</h3>
+            <small>I use cookies and similar technologies. Some of the cookies are necessary for the functioning of this website and others are used to ensure the security of michaelakerele.io and to prevent abuse. By using continuing, you agree to the use of cookies in accordance the Privacy Policy of michaelakerele.io. You can learn more about the use of cookies in the <a href="/privacy-policy/">Privacy Policy</a>. </small>
+            <div class="cookie-buttons-container">
+                <button class="action-button cookie-consent">OK</button>
+
+            </div>
+        </div>
+    </main>
+    
+    
+
+
+<div class="start-live-chat-modal">
+    <h2><strong>Chat with me</strong></h2>
+    <img class="modal-site-logo" src="/themes/contrib/portfolio_two/images/icon.png" alt="logo">
+        <img class="live-chat-admin-avatar" src="/sites/default/files/inline-images/Michael.jpg" alt="admin">
+        <button class="action-button close-live-chat-form">X</button>
+        <label for="room-name-input">Hello, let me know if you need help.</label>
+        <input id="room-name-input" type="text" size="100" placeholder="Type your name to start conversation" maxlength="60" required>
+        <input id="room-name-submit" class="action-button" type="button" value="Start Conversation">
+</div>
+
+    
+    <button class="ChatWithMe active">&#128488;
+    </button>
+
+<div class="chat-modal-container">
+    <div class="chat-modal-container-inner">
+        <button class="close-chat">X</button>
+        <textarea id="chat-log" cols="100" rows="20" placeholder="Just a moment ..." readonly></textarea>
+        <div class="chat-modal-send">
+          <input id="chat-message-input" type="text" size="500">
+          <input id="chat-message-submit" class="action-button" type="button" value="Send">
+        </div>
+        <span id="typing-indicator"></span>
+        <span id="room-participant" hidden>{% if logged_in %}Admin{% else %}Me{% endif %}</span>
+    </div>
+
+</div>
+    
+    <footer class="footer"> 
+    <div><a href="/privacy-policy/">Privacy-Policy</a></div>
+    <a href="/terms-of-use/">Terms-of-Use</a> | <a href="/contact/">Contact</a> 
+    
+    
+    <button class="gototop">&#x2191;</button>
+
+    </footer>
+
+<script>
+const goUP = document.querySelector(".gototop");
+window.addEventListener('scroll', goToTop);
+function goToTop(){
+    if (this.pageYOffset > 100){
+        goUP.classList.add('active');
+    }
+    else{
+        goUP.classList.remove('active');
+    }
+}
+const goUp = () => {
+    
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    
+  };
+goUP.addEventListener('click', goUp)
+</script>
+
+    <script>
+        const LetsChatButton = document.querySelector(".ChatWithMe");
+    
+        const LetsChat = () => {
+                startLiveChatForm.classList.add('active');  
+        };
+    
+        LetsChatButton.addEventListener('click', LetsChat)
+    </script>
+    
+    
+    
+    {# <script>
+        const avatar = document.querySelector('#toggle-avatar')    
+        const subMenu = document.getElementById("subMenu");
+
+        const toggleMenu = () =>{
+            subMenu.classList.toggle("open-menu");
+        }
+
+        avatar.addEventListener('click', toggleMenu)
+
+    </script> #}
+    
+    <script>
+        const consentButton = document.querySelector('.cookie-consent')
+        const cookieBanner = document.querySelector('.cookie-banner')
+        const banner = () =>{
+
+            if (typeof(Storage) !== "undefined"){
+                
+                if(!localStorage.getItem('cookieConsent') && window.location.href!='/privacy-policy/'){
+                    cookieBanner.classList.add('active')
+                    cookieBanner.style.animation = 'banner 2s'
+
+                    consentButton.addEventListener('click', consent)
+                }
+                
+                function consent(){
+                    
+                    localStorage.setItem('cookieConsent', 'consented')
+                    cookieBanner.classList.remove('active')
+                }
+            }
+        }
+        setTimeout(banner, 700)
+    </script>
+
+<script>
+  const contact = document.querySelector('.contact-member');
+  const loggedIn = "True"
+  const checkStatus = (e) => {
+    e.preventDefault();
+      alert("You need to be logged in. You can create a free account if you don't have one.")
+  }
+  if(loggedIn=='False'){
+    contact.addEventListener('click', checkStatus)
+  }
+</script>
+
+
+
+
+<script>
+        // open websocket connection
+
+        const chatLog = document.querySelector('#chat-log');
+        const chatMessageInput = document.querySelector('#chat-message-input');
+        const chatMessageSubmit = document.querySelector('#chat-message-submit');
+        const typingIndicator = document.querySelector('#typing-indicator');
+        const roomParticipant = document.querySelector('#room-participant');
+        const closeChat = document.querySelector('.close-chat')
+        const chatModal = document.querySelector('.chat-modal-container');
+
+        function openWebSocket(){
+
+        const newRoomName = localStorage.getItem('room-name');
+
+
+        const chatSocket = new WebSocket(`ws://localhost:8000/ws/chat/${newRoomName}/`) 
+
+        chatSocket.addEventListener('message', (event) => {
+            const data = JSON.parse(event.data);
+            typingIndicator.textContent = data.typing && data.participant !== roomParticipant.textContent
+            ? `${data.participant} is typing...`
+            : '';
+            if (!data.typing) {
+                chatLog.value += `${data.participant}: ${data.message}\n`;
+            }
+        });
+        
+        chatSocket.addEventListener('close', () => {
+            console.error('Chat socket closed unexpectedly');
+        });
+        
+        chatMessageInput.focus();
+        
+        chatMessageInput.addEventListener('keyup', (event) => {
+            if (event.keyCode === 13) {
+                chatMessageSubmit.click();
+            } else {
+                chatSocket.send(JSON.stringify({
+                    'typing': true,
+                    'participant': '{{logged_in}}' ? 'Admin' : 'Me',
+                }));
+            }
+        });
+        
+        chatMessageSubmit.addEventListener('click', () => {
+            const messageInputDom = chatMessageInput;
+            const message = messageInputDom.value;
+            const participant = '{{logged_in}}' ? 'Admin' : 'Me';
+            
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'participant': participant,
+            }));
+            
+            messageInputDom.value = '';
+        });
+
+        }
+         function endChat() {
+        let text = "The chat will be closed!\nPress Cancel to continue with chat or OK to end chat.";
+        if (confirm(text) == true) {
+            chatModal.classList.remove('active');
+            if(localStorage.getItem('room-name')){
+                localStorage.removeItem('room-name')
+            };
+            LetsChatButton.classList.add('active');
+        } 
+        else {
+            return
+        }
+        }
+        
+        closeChat.addEventListener('click', endChat);
+    </script>

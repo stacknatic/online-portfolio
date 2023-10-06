@@ -1,0 +1,29 @@
+name: Portfolio Theme
+type: theme
+description: 'A second portfolio theme.'
+core_version_requirement: '>=9.2'
+libraries:
+  - portfolio_two/global-styling
+  - portfolio_two/global-scripts
+base theme: stable9
+# regions:
+#   header: 'Header'
+#   content: 'Content'
+#   sidebar_first: 'Sidebar first'
+#   footer: 'Footer'
+
+regions:
+  header: 'Header'
+  primary_menu: 'Primary menu'
+  breadcrumb: 'Breadcrumb'
+  secondary_menu: 'Secondary menu'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  content: 'Content'
+  sidebar_first: 'Left sidebar'
+  sidebar_second: 'Right sidebar'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  footer: 'Footer'
+  footer_top: 'Footer top'
+  footer_bottom: 'Footer bottom'

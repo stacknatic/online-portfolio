@@ -1,0 +1,37 @@
+<?php
+/**
+ * Implements hook_theme_suggestions_HOOK_alter for blocks.
+ */
+
+function portfolio_two_theme_suggestions_block_alter(&$suggestions, $variables) {
+
+  // Load theme suggestions for blocks from parent theme.
+  foreach ($suggestions as &$suggestion) {
+    $suggestion = str_replace('portfolio_two_', 'stable9_', $suggestion);
+  }
+}
+
+function portfolio_two_preprocess_page(array &$variables) {
+
+  // Load the site name out of configuration.
+  $config = \Drupal::config('system.site');
+  $variables['site_name'] = $config->get('name');
+  $variables['site_slogan'] = $config->get('slogan');
+
+   // gets current user name
+   $user_logged_in_name = $variables['user']->getDisplayName();
+
+   // creates value to ouput in the DOM & capitalize first letter
+   $variables['user_logged_in_name'] = ucfirst($user_logged_in_name);
+ 
+   // gets user email
+   $user_email = $variables['user']->getEmail();
+   $variables['user_email'] = $user_email;
+ 
+  //  // get user picture
+  //  $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+  //  $variables['user_picture'] = $user->get('user_picture')->entity->url();
+
+}
+
+
