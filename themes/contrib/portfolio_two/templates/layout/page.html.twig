@@ -189,21 +189,28 @@ set author_pic = {
         <span class="chat-button-notification"></span>
     </button>
 
+
+
+
+
 <div class="chat-modal-container">
     <div class="chat-modal-container-inner">
-        <button class="close-chat">X</button>
-        <textarea id="chat-log" cols="100" rows="20" placeholder="Just a moment ..." readonly></textarea>
-        <div class="chat-modal-send">
-          <input id="chat-message-input" type="text" size="500">
-          <input id="chat-message-submit" class="action-button" type="button" value="Send">
-        </div>
-        <audio id="notificationSound" src="themes/contrib/portfolio_two/sounds/notification.mp3" preload="auto"></audio>
-
-        <span id="typing-indicator"></span>
-        <span id="room-participant" hidden>{% if logged_in %}Admin{% else %}Me{% endif %}</span>
+    <i class="fa-solid fa-angles-down" id="minimize-chat"></i>
+    <button class="close-chat">X</button>
+    <div class="chat-log-container">
     </div>
-
+    
+    <div class="chat-modal-send">
+        
+        <small class="chat-welcome-message">Just a moment ...</small>
+        <input id="chat-message-input" type="text" size="500">
+        <i id="chat-message-submit" class="fa-regular fa-paper-plane"></i>
+    </div>
+    <audio id="notificationSound" src="themes/contrib/portfolio_two/sounds/notification.mp3" preload="auto"></audio>
+    <span id="typing-indicator"></span>
+    <span id="room-participant" hidden>{% if logged_in %}Admin{% else %}Me{% endif %}</span>
 </div>
+
     
     <footer class="footer"> 
     <div><a href="/privacy-policy/">Privacy-Policy</a></div>
@@ -235,13 +242,20 @@ const goUp = () => {
 goUP.addEventListener('click', goUp)
 </script>
 
-    <script>
+    <script nonce="{{request.csp_nonce}}">
         const LetsChatButton = document.querySelector(".ChatWithMe");
-    
+
         const LetsChat = () => {
-                startLiveChatForm.classList.add('active');  
+            if(localStorage.getItem('room-name')){
+                chatModal.classList.add('active');
+                LetsChatButton.classList.remove('active');
+                chatButtonNotification.classList.remove('active');
+                return
+            }
+            startLiveChatForm.classList.add('active');
+            LetsChatButton.classList.remove('active');
         };
-    
+
         LetsChatButton.addEventListener('click', LetsChat)
     </script>
     
@@ -283,51 +297,81 @@ goUP.addEventListener('click', goUp)
         setTimeout(banner, 700)
     </script>
 
-<script>
-  const contact = document.querySelector('.contact-member');
-  const loggedIn = "True"
-  const checkStatus = (e) => {
-    e.preventDefault();
-      alert("You need to be logged in. You can create a free account if you don't have one.")
-  }
-  if(loggedIn=='False'){
-    contact.addEventListener('click', checkStatus)
-  }
-</script>
+
 
 
 
 
 <script>
-        // open websocket connection
+   // open websocket connection
 
-        const chatLog = document.querySelector('#chat-log');
+        const chatLogContainer = document.querySelector('.chat-log-container');
         const chatMessageInput = document.querySelector('#chat-message-input');
         const chatMessageSubmit = document.querySelector('#chat-message-submit');
         const typingIndicator = document.querySelector('#typing-indicator');
         const roomParticipant = document.querySelector('#room-participant');
         const closeChat = document.querySelector('.close-chat')
         const chatModal = document.querySelector('.chat-modal-container');
+        const chatButtonNotification = document.querySelector('.chat-button-notification');
+        const minimizeChat = document.querySelector('#minimize-chat')
+        const chatWelcomeMessage = document.querySelector('.chat-welcome-message');
 
         function openWebSocket(){
 
         const newRoomName = localStorage.getItem('room-name');
 
 
-        const chatSocket = new WebSocket(`ws://localhost:8000/ws/chat/${newRoomName}/`) 
+        let chatSocket = new WebSocket(`ws://localhost:8000/ws/chat/${newRoomName}/`) 
 
+        function appendVisitorMessage(visitorMessage) {
+        if (visitorMessage.trim() !== '') { // Check if the message is not empty or contains only whitespace
+            const messageElement = document.createElement('p');
+            messageElement.classList.add('visitor-chat-message');
+            messageElement.textContent = visitorMessage;
+            chatLogContainer.appendChild(messageElement);
+        }
+        }
+        function appendAdminMessage(adminMessage) {
+            if (adminMessage.trim() !== '') { // Check if the message is not empty or contains only whitespace
+                const messageElement = document.createElement('p');
+                messageElement.classList.add('admin-chat-message');
+                messageElement.textContent = adminMessage;
+                chatLogContainer.appendChild(messageElement);
+            }
+        }
         chatSocket.addEventListener('message', (event) => {
+            {# if (roomParticipant.textContent !== 'Admin' && !chatLogContainer.querySelector('.admin-chat-message')) {
+                chatWelcomeMessage.classList.add('active');
+                chatMessageInput.setAttribute('disabled', 'disabled');
+            } else {
+                chatMessageInput.removeAttribute('disabled');
+            } #}
+            
             const data = JSON.parse(event.data);
+
             typingIndicator.textContent = data.typing && data.participant !== roomParticipant.textContent
             ? `${data.participant} is typing...`
             : '';
-            if (!data.typing) {
-                chatLog.value += `${data.participant}: ${data.message}\n`;
+            if (!data.typing && data.participant == 'Me') {
+                appendVisitorMessage(data.message);
+                scrollToBottom();
             };
+
+            if (!data.typing && data.participant == 'Admin') {
+                chatMessageInput.getAttribute('disabled') === 'disabled' && chatMessageInput.removeAttribute('disabled');
+                if(chatWelcomeMessage.classList.contains('active')) {
+                    chatWelcomeMessage.classList.remove('active');
+                }
+                appendAdminMessage(data.message);
+                scrollToBottom();
+            };
+            
             if (data.message && data.participant !== roomParticipant.textContent) {
                 notificationSound.play();
+                !chatModal.classList.contains('active') ? chatButtonNotification.classList.add('active') : null;
             };
         });
+
         
         chatSocket.addEventListener('close', () => {
             console.error('Chat socket closed unexpectedly');
@@ -360,19 +404,39 @@ goUP.addEventListener('click', goUp)
         });
 
         }
-         function endChat() {
+        function endChat() {
         let text = "The chat will be closed!\nPress Cancel to continue with chat or OK to end chat.";
         if (confirm(text) == true) {
             chatModal.classList.remove('active');
+            chatSocket.close();
+            LetsChatButton.classList.add('active');
             if(localStorage.getItem('room-name')){
                 localStorage.removeItem('room-name')
             };
-            LetsChatButton.classList.add('active');
+            chatLogContainer.textContent = null;
         } 
         else {
             return
         }
         }
-        
+        // scroll to bottom
+        function scrollToBottom() {
+            chatLogContainer.scrollTop = chatLogContainer.scrollHeight;
+        }
+        // remove room-name from localStorage on browser close or page reload
+        function removeRoomNameFromLocalStorage() {
+            if (localStorage.getItem('room-name')){
+                localStorage.removeItem('room-name');
+            }
+        }
+
+        window.addEventListener('beforeunload', removeRoomNameFromLocalStorage);
+
+        function minimizeChatWindow() {
+            chatModal.classList.remove('active');
+            LetsChatButton.classList.add('active');
+        }
+        minimizeChat.addEventListener('click', minimizeChatWindow);
+
         closeChat.addEventListener('click', endChat);
     </script>
