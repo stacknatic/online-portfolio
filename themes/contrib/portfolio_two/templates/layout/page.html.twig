@@ -37,16 +37,7 @@ set author_pic = {
              
           </li>
           {% endif %}
-          
-          {# <li>
-            <form method="post" action="/search-posts/">
-             
-              <input class="search-box" type="search" placeholder="search" aria-label="Search"
-              name="searched">
-              <button class="article-search-button" type="submit">Search</button>
-      
-            </form>
-          </li> #}
+        
           <li>
               {{page.header}}
 
@@ -90,11 +81,6 @@ set author_pic = {
             </div>
             
   </nav>
-  
-    {# <span id="toggle-avatar">
-    <img src="" class="user-photo" alt="user avatar" width="40" height="40">
-    </span> #}
-    {# {{page.header}} #}
 
 </header>
   
@@ -158,7 +144,6 @@ set author_pic = {
     </div>
 </div>
 
-
         <div class="cookie-banner">
             <h3 class="centered-text">I value your privacy</h3>
             <small>I use cookies and similar technologies. Some of the cookies are necessary for the functioning of this website and others are used to ensure the security of michaelakerele.io and to prevent abuse. By using continuing, you agree to the use of cookies in accordance the Privacy Policy of michaelakerele.io. You can learn more about the use of cookies in the <a href="/privacy-policy/">Privacy Policy</a>. </small>
@@ -168,9 +153,6 @@ set author_pic = {
             </div>
         </div>
     </main>
-    
-    
-
 
 <div class="start-live-chat-modal">
     <h2><strong>Chat with me</strong></h2>
@@ -182,13 +164,10 @@ set author_pic = {
         <input id="room-name-submit" class="action-button" type="button" value="Start Conversation">
 </div>
 
-    <button class="ChatWithMe active"><i class="fa-regular fa-comments fa-beat-fade"></i></i>
-        <span class="chat-button-notification"></span>
+    <button class="ChatWithMe active"><i class="fa-regular fa-comments"></i></i>
+        {# <span class="chat-button-notification"></span> #}
+        <span class="chat-button-notification"><i class="fa-solid fa-circle fa-beat-fade"></i></span>
     </button>
-
-
-
-
 
 <div class="chat-modal-container">
     <div class="chat-modal-container-inner">
@@ -208,7 +187,6 @@ set author_pic = {
     <span id="room-participant" hidden>{% if logged_in %}Admin{% else %}Me{% endif %}</span>
     </div>
 </div>
-
     
     <footer class="footer"> 
     <div><a href="/privacy-policy/">Privacy-Policy</a></div>
@@ -257,20 +235,6 @@ goUP.addEventListener('click', goUp)
         LetsChatButton.addEventListener('click', LetsChat)
     </script>
     
-    
-    
-    {# <script>
-        const avatar = document.querySelector('#toggle-avatar')    
-        const subMenu = document.getElementById("subMenu");
-
-        const toggleMenu = () =>{
-            subMenu.classList.toggle("open-menu");
-        }
-
-        avatar.addEventListener('click', toggleMenu)
-
-    </script> #}
-    
     <script>
         const consentButton = document.querySelector('.cookie-consent')
         const cookieBanner = document.querySelector('.cookie-banner')
@@ -294,11 +258,6 @@ goUP.addEventListener('click', goUp)
         }
         setTimeout(banner, 700)
     </script>
-
-
-
-
-
 
 <script>
    // open websocket connection
