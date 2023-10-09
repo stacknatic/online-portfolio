@@ -926,8 +926,30 @@ select#id_subscribe_to_notification {
 
 /****** END GO-TO-TOP BUTTON ******/
 
-
 /****** BEGIN CHATWITHME BUTTON ******/
+
+.chat-button-notification{
+    position: absolute;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background-color: red;
+    top: 0;
+    right: 0;
+    display: none;
+
+}
+.chat-button-notification.active{
+    position: absolute;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background-color: red;
+    top: 0;
+    right: 0;
+    display: block;
+
+}
 .ChatWithMe {
     border-radius: 50%;
     /* border-color: green; */
@@ -956,7 +978,8 @@ select#id_subscribe_to_notification {
     opacity: 0.8;
 }
 
-/****** END GO-TO-TOP BUTTON ******/
+/***** END CHATWITHME BUTTON *****/
+
 /***** BEGIN CHAT *****/
 .chat-modal-container{
     padding: 0.5rem;

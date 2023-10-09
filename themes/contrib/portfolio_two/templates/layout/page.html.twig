@@ -182,9 +182,6 @@ set author_pic = {
         <input id="room-name-submit" class="action-button" type="button" value="Start Conversation">
 </div>
 
-{#     
-    <button class="ChatWithMe active">&#128488;
-    </button> #}
     <button class="ChatWithMe active"><i class="fa-regular fa-comments fa-beat-fade"></i></i>
         <span class="chat-button-notification"></span>
     </button>
@@ -209,6 +206,7 @@ set author_pic = {
     <audio id="notificationSound" src="themes/contrib/portfolio_two/sounds/notification.mp3" preload="auto"></audio>
     <span id="typing-indicator"></span>
     <span id="room-participant" hidden>{% if logged_in %}Admin{% else %}Me{% endif %}</span>
+    </div>
 </div>
 
     
