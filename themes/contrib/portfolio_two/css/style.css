@@ -420,14 +420,7 @@ p img, figure img {
     width: 130px;
     height: 130px;
 }
-.profile-photo{
-    width: 120px;
-    height: 120px;
-    display: block;
-    margin: auto;
-    border-radius: 50%;
-    border: double silver;
-}
+
 .avatar{
     border-radius: 50%;
 }
@@ -455,7 +448,11 @@ p img, figure img {
 }
 
 /***** BEGIN ARTICLES *****/
-
+article img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
 .article-card-container {
 
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -502,13 +499,28 @@ padding: 2px 16px;
     border-radius: 5px;
     padding: 0.5rem;
 }
-.content-sidebar img{
-    border-radius: 50%;
+/* .content-sidebar img{
+    border-radius: 5px;
     border: double gray;
+    margin-right: 1rem;
     margin: auto;
     display: block;
+} */
+.views-field-field-project-image img{
+    border-radius: 5px;
+    border: double gray;
+    margin-right: 1rem;
 }
+
 /***** END RELATED POSTS *****/
+.profile-photo{
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin: auto;
+    border-radius: 50%!important;
+    border: double silver;
+}
 
 /***** BEGIN FORMS *****/
 /*drupal */

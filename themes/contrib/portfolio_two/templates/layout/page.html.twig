@@ -21,14 +21,15 @@ set author_pic = {
           <li>
               <a href="/">Home</a>
           </li>
-          
+          <li>
+            <a href="/projects/">Projects</a>
+          </li>
           <li>
             <a href="/blog/">Blog</a>
           </li>
           {% if logged_in %}
           <li>
             <a href="/user/logout" id="logout"> Log Out</a>
-             
           </li>
           {% else %}
            <li>
@@ -97,8 +98,6 @@ set author_pic = {
         </span>
   </div>
 {% endif %}
-      
-
 
     <main>
         
@@ -128,10 +127,16 @@ set author_pic = {
       
     </div> 
   </div>
+  {% for article in posts %}
+  <article>
+    <h2>{{ article.title }}</h2>
+    <p>{{ article.body.value }}</p>
+    <!-- Add more fields as needed -->
+  </article>
+{% endfor %}
+
   <div class="second-sidebar">{{page.sidebar_second}}</div>
   </section>
-  
-
 
     <div class="social-share-buttons">
 
