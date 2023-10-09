@@ -98,7 +98,7 @@ set author_pic = {
 
 </header>
   
-{% if node.title.value %}
+{% if node.title.value and not is_front %}
 <div class="breadcrumbs unique-breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
         <span class="breadcrumbs-list" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
           <a itemprop="item" href="/"><span itemprop="name">Home</span></a>
@@ -120,30 +120,29 @@ set author_pic = {
   
   <section class="main-content profile-main-content">
     {{page.content}}
-
-    {{author_pic}}
     
 {{user.user.user_profile}}
   </section>
   <section class="content-sidebar profile-sidebar">
+  <div class="portfolio-card">
     <img src="/sites/default/files/inline-images/Michael.jpg" class="profile-photo" alt="profile photo">
-    
     
     <h1 class="developer-name-h1">Michael Akerele</h1>
     
-    
-    
     <small><center>Full Stack Developer<center><span></span>
     </small>
-    
+    <div class="my-social-networks">
+    <a href="https://github.com/stacknatic"> <i class="fa-brands fa-github"></i></a>
+    <a href="https://linked.com"> <i class="fa-brands fa-linkedin"></i></a>
+
+    </div>
     
     <div class="profile-stats">
-      
       <a href="/contact"class="action-button">Consult</a>
-      <!-- <button class="action-button">Follow</button> -->
       
     </div> 
-  <div>{{page.sidebar_second}}</div>
+  </div>
+  <div class="second-sidebar">{{page.sidebar_second}}</div>
   </section>
   
 
@@ -183,8 +182,11 @@ set author_pic = {
         <input id="room-name-submit" class="action-button" type="button" value="Start Conversation">
 </div>
 
-    
+{#     
     <button class="ChatWithMe active">&#128488;
+    </button> #}
+    <button class="ChatWithMe active"><i class="fa-regular fa-comments fa-beat-fade"></i></i>
+        <span class="chat-button-notification"></span>
     </button>
 
 <div class="chat-modal-container">
@@ -211,6 +213,7 @@ set author_pic = {
     <button class="gototop">&#x2191;</button>
 
     </footer>
+    <script src="https://kit.fontawesome.com/92ee97b0b5.js" crossorigin="anonymous"></script>
 
 <script>
 const goUP = document.querySelector(".gototop");
