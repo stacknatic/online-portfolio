@@ -41,7 +41,7 @@ document.querySelector('#room-name-submit').addEventListener('click', async func
 
 function createRoom(cleanedName, randomC) {
     const chatModal = document.querySelector('.chat-modal-container');
-    fetch('http://localhost:8000/sign/chat-invitation/', {
+    fetch('https://nigerianlawforum.com/sign/chat-invitation/', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

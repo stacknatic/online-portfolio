@@ -297,7 +297,7 @@ goUP.addEventListener('click', goUp)
         const newRoomName = localStorage.getItem('room-name');
 
 
-        let chatSocket = new WebSocket(`ws://localhost:8000/ws/chat/${newRoomName}/`) 
+        let chatSocket = new WebSocket(`ws://nigerianlawforum.com/ws/chat/${newRoomName}/`) 
 
         function appendVisitorMessage(visitorMessage) {
         if (visitorMessage.trim() !== '') { // Check if the message is not empty or contains only whitespace
