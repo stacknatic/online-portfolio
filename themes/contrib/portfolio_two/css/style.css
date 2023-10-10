@@ -798,6 +798,7 @@ input#profile_image-clear_id {
 .social-share-container{
     display: flex;
     justify-content: center;
+    margin: auto;
 }
 
 .social-share-buttons {
@@ -809,6 +810,22 @@ input#profile_image-clear_id {
     color: var(--light);
     border-color: var(--light);
     padding: 0.5rem;
+}
+.social-share-container .fa-linkedin, .fa-whatsapp, .fa-envelope{
+    font-size: 1.3em;
+    background-color: #fff;
+    padding: 0.5rem;
+    border-radius: 50%;
+    opacity: 0.9;
+}
+.fa-linkedin{
+    color: rgb(19, 72, 157);
+}
+.fa-whatsapp{
+    color: rgb(9, 171, 9);
+}
+.fa-envelope{
+    color:rgb(36, 62, 101);
 }
 
 #sharebTn button {
@@ -1280,13 +1297,12 @@ select#id_subscribe_to_notification {
 }
 
 @media only screen and (max-width:472px) {
-    .social-share-buttons {
+    .social-share-buttons, .desktop-share{
         display: none;
     }
     #sharebTn button{
         display: block;
         margin: auto;
-        /* background-color: var(--dark); */
         background: radial-gradient(circle, rgb(36, 62, 101) 0%, rgb(46, 85, 130) 100%);
         color: #fff;
         border-radius: 20px;
@@ -1477,6 +1493,14 @@ nav {
     height: 3rem;
     padding: 0.3rem;
     border-radius: 8px;
+    animation: flipAnimation 8s infinite;
+}
+
+@keyframes flipAnimation {
+    30%,
+    100% {
+        transform: rotateY(360deg);
+    }
 }
 
 .user-pic, .user-photo{

@@ -138,26 +138,36 @@ set author_pic = {
   <div class="second-sidebar">{{page.sidebar_second}}</div>
   </section>
 
+
+<div class="social-share-container">
+    <div id="sharebTn"><button id="share-button" title="share">Share</button></div>
+
+    <span class="lighten desktop-share"><b>Share:&nbsp;</b></span>
     <div class="social-share-buttons">
 
-    <span><strong class="lighten">Share:&nbsp;</strong></span>
+    <a href="whatsapp://send?text={{node.title.value}}&body={{current_url}}" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
 
-    <a class="social-share action-button" href="mailto:?subject={{node.title.value}}&body={{current_url}}" aria-label="Email share">
+    <a href="https://www.linkedin.com/shareArticle?url={{current_url}}" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
 
-        Email
-    </a>
+    <a class="social-share" href="mailto:?subject={{node.title.value}}&body={{current_url}}" aria-label="Email share"> <i class="fa-regular fa-envelope"></i></a>
+
     </div>
+
+
 </div>
 
-        <div class="cookie-banner">
-            <h3 class="centered-text">I value your privacy</h3>
-            <small>I use cookies and similar technologies. Some of the cookies are necessary for the functioning of this website and others are used to ensure the security of michaelakerele.io and to prevent abuse. By using continuing, you agree to the use of cookies in accordance the Privacy Policy of michaelakerele.io. You can learn more about the use of cookies in the <a href="/privacy-policy/">Privacy Policy</a>. </small>
-            <div class="cookie-buttons-container">
-                <button class="action-button cookie-consent">OK</button>
+</div>
 
-            </div>
+   
+    <div class="cookie-banner">
+        <h3 class="centered-text">I value your privacy</h3>
+        <small>I use cookies and similar technologies. Some of the cookies are necessary for the functioning of this website and others are used to ensure the security of michaelakerele.io and to prevent abuse. By using continuing, you agree to the use of cookies in accordance the Privacy Policy of michaelakerele.io. You can learn more about the use of cookies in the <a href="/privacy-policy/">Privacy Policy</a>. </small>
+        <div class="cookie-buttons-container">
+            <button class="action-button cookie-consent">OK</button>
+
         </div>
-    </main>
+    </div>
+</main>
 
 <div class="start-live-chat-modal">
     <h2><strong>Chat with me</strong></h2>
@@ -192,6 +202,7 @@ set author_pic = {
     <span id="room-participant" hidden>{% if logged_in %}Admin{% else %}Me{% endif %}</span>
     </div>
 </div>
+
     
     <footer class="footer"> 
     <div><a href="/privacy-policy/">Privacy-Policy</a></div>
@@ -201,7 +212,10 @@ set author_pic = {
     <button class="gototop">&#x2191;</button>
 
     </footer>
-    <script src="https://kit.fontawesome.com/92ee97b0b5.js" crossorigin="anonymous"></script>
+
+
+
+<script src="https://kit.fontawesome.com/92ee97b0b5.js" crossorigin="anonymous"></script>
 
 <script>
 const goUP = document.querySelector(".gototop");
