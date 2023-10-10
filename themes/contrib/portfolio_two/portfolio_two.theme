@@ -18,6 +18,7 @@ function portfolio_two_preprocess_page(array &$variables) {
   $variables['site_name'] = $config->get('name');
   $variables['site_slogan'] = $config->get('slogan');
 
+
    // gets current user name
    $user_logged_in_name = $variables['user']->getDisplayName();
 
@@ -27,6 +28,16 @@ function portfolio_two_preprocess_page(array &$variables) {
    // gets user email
    $user_email = $variables['user']->getEmail();
    $variables['user_email'] = $user_email;
+
+
+    // Load the current node, assuming you are on a node page.
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+  if ($node && $node->hasField('field_linkedin')) {
+    // Get the field value and add it as a variable.
+    $variables['linkedin_url'] = $node->get('field_linkedin')->value;
+
+  }
  
   //  // get user picture
   //  $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());

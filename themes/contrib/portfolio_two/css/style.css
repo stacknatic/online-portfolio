@@ -52,6 +52,7 @@ p img, figure img, .wp-block-image img{
     margin: auto;
     border-radius: 5px;
 }
+
 .bold-text{
     font-weight: bold;
 }
@@ -229,6 +230,12 @@ body {
     width: 100%;
     border-radius: 10px;
 }
+.portfolio-card{
+    border: 1px gray solid;
+    padding: 1rem;
+    border-radius: 10px;
+
+}
 .profile-main-content{
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
@@ -247,7 +254,7 @@ body {
 }
 main{
     font-size: 1.125rem;
-    line-height: 2.0rem;
+    line-height: 2.3rem;
     margin: 6rem 2rem 7rem;
     min-height: calc(90vh - 15vh);
 }
@@ -274,7 +281,7 @@ h3,
 h4,
 h5,
 h6 {
-    line-height: 2rem;
+    line-height: 2.5rem;
     margin: 1rem 0;
 }
 .developer-name-h1{
@@ -282,7 +289,7 @@ h6 {
 }
 
 p{
-    line-height: 2rem;
+    line-height: 2.5rem;
     margin: 1.2rem 0;
     word-break: break-word;
 }
@@ -296,6 +303,22 @@ p{
     color: #000;
 }
 /***** profile *****/
+/* .contextual-region img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+} */
+.my-social-networks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    margin-top: 1rem;
+    gap: 2rem;
+}
+.my-social-networks a{
+    color: unset;
+}
 .profile-stats {
     margin-top: 1rem;
     display: flex;
@@ -397,14 +420,7 @@ p img, figure img {
     width: 130px;
     height: 130px;
 }
-.profile-photo{
-    width: 120px;
-    height: 120px;
-    display: block;
-    margin: auto;
-    border-radius: 50%;
-    border: double silver;
-}
+
 .avatar{
     border-radius: 50%;
 }
@@ -432,7 +448,11 @@ p img, figure img {
 }
 
 /***** BEGIN ARTICLES *****/
-
+article img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
 .article-card-container {
 
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -479,13 +499,28 @@ padding: 2px 16px;
     border-radius: 5px;
     padding: 0.5rem;
 }
-.content-sidebar img{
-    border-radius: 50%;
+/* .content-sidebar img{
+    border-radius: 5px;
     border: double gray;
+    margin-right: 1rem;
     margin: auto;
     display: block;
+} */
+.views-field-field-project-image img{
+    border-radius: 5px;
+    border: double gray;
+    margin-right: 1rem;
 }
+
 /***** END RELATED POSTS *****/
+.profile-photo{
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin: auto;
+    border-radius: 50%!important;
+    border: double silver;
+}
 
 /***** BEGIN FORMS *****/
 /*drupal */
@@ -502,6 +537,7 @@ padding: 2px 16px;
 #user-login-form input{
     border-radius: 5px;
     padding: 0.5rem;
+    width: 100%;
 }
 #user-login-form input[type="submit"]{
     border-radius: 20px;
@@ -757,12 +793,12 @@ input#profile_image-clear_id {
         font-size: 1.5rem;
         margin-top: 3rem;
     }
-  
 }
 
 .social-share-container{
     display: flex;
     justify-content: center;
+    margin: auto;
 }
 
 .social-share-buttons {
@@ -774,6 +810,22 @@ input#profile_image-clear_id {
     color: var(--light);
     border-color: var(--light);
     padding: 0.5rem;
+}
+.social-share-container .fa-linkedin, .fa-whatsapp, .fa-envelope{
+    font-size: 1.3em;
+    background-color: #fff;
+    padding: 0.5rem;
+    border-radius: 50%;
+    opacity: 0.9;
+}
+.fa-linkedin{
+    color: rgb(19, 72, 157);
+}
+.fa-whatsapp{
+    color: rgb(9, 171, 9);
+}
+.fa-envelope{
+    color:rgb(36, 62, 101);
 }
 
 #sharebTn button {
@@ -903,16 +955,40 @@ select#id_subscribe_to_notification {
 
 /****** END GO-TO-TOP BUTTON ******/
 
-
 /****** BEGIN CHATWITHME BUTTON ******/
+
+.chat-button-notification{
+    position: absolute;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    /* background-color: red; */
+    top: 0;
+    right: 0;
+    display: none;
+
+}
+.chat-button-notification.active{
+    position: absolute;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    color: red;
+    top: 0;
+    right: 0;
+    display: block;
+
+}
 .ChatWithMe {
     border-radius: 50%;
-    border-color: green;
+    /* border-color: green; */
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 94%); 
     position: fixed;
     bottom: 145px;
     right: 1rem;
     color: #fff;
-    background-color: gainsboro;
+    background-color: green;
     opacity: 0;
     font-size: 1.2rem;
     display: flex;
@@ -923,7 +999,6 @@ select#id_subscribe_to_notification {
     height: 50px;
     pointer-events: none;
     transition: all 0.4s;
-
 }
 
 .ChatWithMe.active {
@@ -932,7 +1007,7 @@ select#id_subscribe_to_notification {
     opacity: 0.8;
 }
 
-/****** END GO-TO-TOP BUTTON ******/
+/***** END CHATWITHME BUTTON *****/
 
 /***** BEGIN CHAT *****/
 .chat-modal-container{
@@ -950,7 +1025,6 @@ select#id_subscribe_to_notification {
     left: 1rem;
     background-color: #1f1f1f;
     background-color: rgba(0, 0, 0, .8);
-    /* position:absolute; */
     width: 100%;
     height: 100%;
     top: 0;
@@ -989,13 +1063,12 @@ select#id_subscribe_to_notification {
     width: 95%;
     gap: 1rem;
     margin-top: 1rem;
-    position: relative;
+    padding: 0.5rem;
     border-radius: 5px;
-    padding: 0.2rem;
+    position: relative;
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 94%); 
 }
-
 .chat-modal-container-inner .action-button{
     width: max-content;
     margin: auto;
@@ -1005,18 +1078,23 @@ select#id_subscribe_to_notification {
     color: #fff;
     border: none;
 }
+
 .chat-modal-send{
+    max-width: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
-    background-color: #0a5397;
+    gap: 1rem;    
     padding: 0.3rem;
     border-radius: 5px;
+}
+#notificationSound {
+    display: none;
 }
 #typing-indicator{
     color: #fff;
 }
+
 .chat-container, .live-chat-form{
     display: flex;
     align-items: center;
@@ -1027,12 +1105,99 @@ select#id_subscribe_to_notification {
     max-width: 700px;
     width: 100%
 }
+.chat-modal-container-inner .fa-angles-down{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: -2rem;
+    right: 4rem;
+    background-color: darkorange;
+    color: #fff;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.close-chat{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: -2rem;
+    right: -0.5rem;
+    background-color: red;
+    color: #fff;
+    border-radius: 50%;
+    border: none;
+}
+.chat-welcome-message{
+    display:none;
+}
+.chat-welcome-message.active{
+    display:block;
+}
+.chat-log-container {
+    padding: 0.5rem;
+    font-family: inherit;
+    border-radius: 10px;
+    line-height: 1.9rem;
+    max-width: 600px;
+    width: 100%;
+    height: 45vh;
+    background-color: #e7e7ec;
+    border: 2px solid #fff;
+    overflow: auto; /* Add this line to enable scrolling */
+    display: flex;
+    flex-direction: column; /* or row, depending on your layout */
+}
+
+.visitor-chat-message{
+    background-color: lightgray;
+    color: #000;
+    padding: 0.3rem;
+    width: fit-content;
+    border-radius: 5px;
+    align-self: flex-end;
+}
+.admin-chat-message{
+    background-color: lightblue;
+    color: #000;
+    text-align: right;
+    padding: 0.3rem;
+    width: fit-content;
+    border-radius: 5px;
+    align-self: flex-start;
+}
+
 #chat-log{
     padding: 0.5rem;
     font-family: inherit;
     border-radius: 10px;
-    line-height: 1.2rem;
+    line-height: 1.9rem;
     width: 100%;
+    max-height: 45vh;
+    text-overflow: scroll;
+    background-image: url('http://localhost:8000/static/images/nigerian-law-forum-5-1.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    filter: brightness(0.4);
+
+}
+#chat-message-submit{
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: green;
+    padding: 0.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fa-paper-plane{
+    width: 45px;
+    height: 45px;
 }
 #chat-message-input, #room-name-input{
     padding: 0.5rem;
@@ -1110,17 +1275,6 @@ select#id_subscribe_to_notification {
     height: 3rem;
     border-radius: 50%;
 }
-.close-chat{
-    position: absolute;
-    width: 35px;
-    height: 35px;
-    top: -0.5rem;
-    right: -0.5rem;
-    background-color: red;
-    color: #fff;
-    border-radius: 50%;
-    border: none;
-}
 .close-live-chat-form{
     position: absolute;
     width: 35px;
@@ -1131,8 +1285,6 @@ select#id_subscribe_to_notification {
     color: #fff;
     border: none;
 }
-
-
 
 /***** END CHAT *****/
 
@@ -1145,13 +1297,12 @@ select#id_subscribe_to_notification {
 }
 
 @media only screen and (max-width:472px) {
-    .social-share-buttons {
+    .social-share-buttons, .desktop-share{
         display: none;
     }
     #sharebTn button{
         display: block;
         margin: auto;
-        /* background-color: var(--dark); */
         background: radial-gradient(circle, rgb(36, 62, 101) 0%, rgb(46, 85, 130) 100%);
         color: #fff;
         border-radius: 20px;
@@ -1342,6 +1493,14 @@ nav {
     height: 3rem;
     padding: 0.3rem;
     border-radius: 8px;
+    animation: flipAnimation 8s infinite;
+}
+
+@keyframes flipAnimation {
+    30%,
+    100% {
+        transform: rotateY(360deg);
+    }
 }
 
 .user-pic, .user-photo{
