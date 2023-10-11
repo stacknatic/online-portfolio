@@ -297,7 +297,7 @@ goUP.addEventListener('click', goUp)
         const newRoomName = localStorage.getItem('room-name');
 
 
-        let chatSocket = new WebSocket(`ws://nigerianlawforum.com/ws/chat/${newRoomName}/`) 
+        let chatSocket = new WebSocket(`ws://localhost:8000/ws/chat/${newRoomName}/`) 
 
         function appendVisitorMessage(visitorMessage) {
         if (visitorMessage.trim() !== '') { // Check if the message is not empty or contains only whitespace
@@ -416,3 +416,32 @@ goUP.addEventListener('click', goUp)
 
         closeChat.addEventListener('click', endChat);
     </script>
+
+    <script>
+   <script>
+  const currentURL = window.location.href;
+  
+  // Use server-side rendering placeholders to set initial values
+  const titleValue = "{{node.title.value}}";
+  const shareData = {
+    title: titleValue,
+    text: titleValue,
+    url: currentURL
+  }
+
+  const btn = document.getElementById('shareBtn');
+  const shareResult = document.querySelector('.shareResult');
+
+  // Share must be triggered by "user activation"
+  btn.addEventListener('click', async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        console.log("Web Share API is not supported in this browser.");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  });
+</script>

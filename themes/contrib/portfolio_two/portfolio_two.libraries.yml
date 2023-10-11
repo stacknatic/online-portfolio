@@ -4,14 +4,14 @@
 #       css/style.css: {}
 
 global-styling:
-  version: 4.2
+  version: 4.4
   css:
     theme:
       # css/layout.css: {}
       css/style.css: {}
       # css/colors.css: {}
 global-scripts:
-  version: 1.9
+  version: 2.1
   js: 
     js/main.js: {}
     # js/navmenu.js: {}   

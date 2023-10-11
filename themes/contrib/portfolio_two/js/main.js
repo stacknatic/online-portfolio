@@ -41,7 +41,7 @@ document.querySelector('#room-name-submit').addEventListener('click', async func
 
 function createRoom(cleanedName, randomC) {
     const chatModal = document.querySelector('.chat-modal-container');
-    fetch('https://nigerianlawforum.com/sign/chat-invitation/', {
+    fetch('http://localhost:8000/sign/chat-invitation/', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -97,7 +97,7 @@ async function randomCharacters(length) {
         result += characters.charAt(randomIndex);
       }
     } else {
-      console.error(
+      alert(
         "Web Crypto API not available. Please use a modern web browser."
       );
     }
