@@ -1,6 +1,8 @@
-# A Developer Portfolio created with Drupal CMS
+# An Online Portfolio created with Drupal CMS
 
 ## Features
+
+- Custom Theme
 - Profile (Landing Page)
 - Projects (List View)
 - Blog (List View and Full Page)
@@ -9,7 +11,9 @@
 - Social Share Icons
 - Privacy Policy Banner
 
+
 ## Tech Stack
+
 - Drupal
 - Nginx
 - Websocket
