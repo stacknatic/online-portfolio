@@ -97,7 +97,7 @@ async function randomCharacters(length) {
         result += characters.charAt(randomIndex);
       }
     } else {
-      console.error(
+      alert(
         "Web Crypto API not available. Please use a modern web browser."
       );
     }

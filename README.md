@@ -1,20 +1,41 @@
-# A Developer Portofio created with Drupal CMS
+# An Online Portfolio created with Drupal CMS
 
 ## Features
 
-- Blog
-
+- Custom Theme
+- Profile (Landing Page)
+- Projects (List View)
+- Blog (List View and Full Page)
 - Live Chat
+- Social Network Links
+- Social Share Icons
+- Privacy Policy Banner
 
-- Social Share Buttons and Native Share
 
-## Main Pages
+## Tech Stack
 
-- Blog (List)
+- Drupal
+- Nginx
+- Websocket
+- Crypto
+- Let’s Encrypt
+- FontAwesome
+- Django Channels
+- Asyncio
 
-- Contact Form Page
+### Screenshots
 
-- Home page (Professional details)
+![Alt text](themes/contrib/portfolio_two/images/portfolio-landing.png)
 
-- Projects (List)
+
+![Alt text](themes/contrib/portfolio_two/images/portfolio-mobile.png)
+
+![Alt text](themes/contrib/portfolio_two/images/portfolio-mobile-2.png)
+
+### Screencast
+[Watch the screencast](themes/contrib/portfolio_two/video/portfolio.webm)
+
+
+
+
 
