@@ -33,10 +33,7 @@
 ![Alt text](themes/contrib/portfolio_two/images/portfolio-mobile-2.png)
 
 ### Screencast
-<video controls>
-  <source src="themes/contrib/portfolio_two/video/portfolio.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video>
+[Watch the screencast](themes/contrib/portfolio_two/video/portfolio.webm)
 
 
 
