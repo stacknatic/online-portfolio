@@ -20,7 +20,6 @@
 - Crypto
 - Let’s Encrypt
 - FontAwesome
-- Django Channels
 - Asyncio
 
 ### Screenshots
