@@ -61,136 +61,8 @@ p img, figure img, .wp-block-image img{
     margin: 0.5rem;
 
 }
-/***** HERO BANNER *****/
-.hero-banner{
-    background-color: rgba(0, 0, 0, .4);
-    width: 100%;
-    height: 332px;
-    /* background: url('/static/images/law_platform.jpeg'); */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    /* filter: brightness(0.4); */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    position: relative;
-    /* z-index: -1; */
-}
-.inner-hero{
-    color: #fff;
-    background-color: rgba(0, 0, 0, .7);
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 
-}
 
-.hero-banner p{
-    font-size: 2rem;
-}
-.hero-banner small{
-    margin: 0.5rem 0;
-}
-
-.breadcrumbs span{
-    color: lightblue;
-    margin-top: 1rem;
-}
-.lighten{
-    color: var(--light)
-}
-.page-hero{
-    color: lightblue;
-}
-.hero-text{
-    margin: 0.5rem 0;
-}
-
-.unique-breadcrumbs {
-    margin-top: 5rem;
-}
-.unique-breadcrumbs span{
-    color: #000;
-}
-
-/***** END HERO BANNER *****/
-
-/***** BEGIN TOC *****/
-
-.toc-container{
-    border: 1px solid gray;
-    padding: 3rem;
-    margin: auto;
-    width: fit-content;
-    color: #000;
-    background-color: gainsboro;
-    border-radius: 5px;
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-.toc-heading {
-    margin: auto;
-    display: block;
-    color: #000;
-    justify-content: center;
-    text-align: center;
-    border-radius: 2px;
-    width: 40%;
-    box-sizing: border-box;
-    color: rgb(111, 105, 105);
-    box-shadow: 5px 5px 5px 5px;
-    list-style: none;
-    border-radius: 20px;
-    margin-bottom: 2%;
-    padding: 3px;
-}
-
-.toc {
-    margin: auto;
-    display: block;
-    justify-content: center;
-    text-align: center;
-    width: 60%;
-    box-sizing: border-box;
-    box-shadow: 5px 5px 5px 5px;
-    list-style: none;
-    border-radius: 20px;
-    font-weight: bold;
-    line-height: 1.9rem;
-
-}
-
-#toc-heading{
-    text-decoration: underline;
-    margin: 0.1rem;
-    line-height: 1.8rem;
-}
-
-.toc-container ul li{
-    list-style-type: none;
-    line-height: 2.5rem;
-}
-
-.toc-container ul li a{
-    color: #000;
-}
-.toc-container ul li a:visited{
-    color: #0a5397;
-}
-
-.tocDiv {
-    display: none !important;
-}
-/***** END TOC *****/
 body {
     position: relative;
     background: url('/themes/contrib/portfolio_two/images/wallpaper.jpeg');
@@ -368,20 +240,6 @@ p img, figure img {
     flex-direction: column;
     margin-bottom: 7rem;
     
-}
-.cover-background{
-    background-color: rgba(0, 0, 0, .9);
-    width: 100%;
-    height: 232px;
-    background: url('/static/images/law_platform.jpeg');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    filter: brightness(0.4);
-}
-.coverphoto{
-    width: 100%;
-    height: auto;
 }
 .profile-avatar {
     border-radius: 50%;
