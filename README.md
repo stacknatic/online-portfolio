@@ -31,9 +31,3 @@
 ![Alt text](themes/contrib/portfolio_two/images/portfolio-mobile.png)
 
 ![Alt text](themes/contrib/portfolio_two/images/portfolio-mobile-2.png)
-
-
-
-
-
-
