@@ -332,9 +332,9 @@ if (btn !== null) {
       navigator.share(shareData)
       .catch((err) => console.error('Error sharing: ', err));
     } else {
-      alert("Share failed.");
+      alert("Web Share API is not supported in this browser.");
     }
   }
-}
   
-  btn.addEventListener('click', shareContent);
+btn.addEventListener('click', shareContent);
+}
