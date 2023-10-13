@@ -336,7 +336,7 @@ btn.addEventListener('click', async () => {
       alert("Web Share API is not supported in this browser.");
     }
   } catch (err) {
-    console.error(err);
+    return;
     // Handle errors or show an error message to the user
   }
 });
