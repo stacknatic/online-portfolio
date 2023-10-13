@@ -1,5 +1,0 @@
-browser_sync:
-  enabled: false
-  host: localhost
-  port: 3000
-clear_registry: false

@@ -32,8 +32,6 @@
 
 ![Alt text](themes/contrib/portfolio_two/images/portfolio-mobile-2.png)
 
-### Screencast
-[Watch the screencast](themes/contrib/portfolio_two/video/portfolio.webm)
 
 
 
