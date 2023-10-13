@@ -326,20 +326,16 @@ const shareData = {
 
 const btn = document.getElementById('share-button');
 
-// Define an async function for sharing
 async function shareContent() {
   try {
     if (navigator.share) {
       await navigator.share(shareData);
-      // Update the DOM to show that content has been shared
     } else {
       alert("Web Share API is not supported in this browser.");
     }
   } catch (err) {
-    // Handle errors or show an error message to the user
     return null;
   }
 }
 
-// Share must be triggered by "user activation"
 btn.addEventListener('click', shareContent);
