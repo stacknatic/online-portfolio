@@ -326,13 +326,9 @@ const shareData = {
 
 const btn = document.getElementById('share-button');
 
-async function shareContent() {
+btn.addEventListener("click", async () => {
     try {
       await navigator.share(shareData);
+    } catch (err) {
     }
-    catch (err) {
-    alert("Share failed.");
-  }
-}
-
-btn.addEventListener('click', shareContent);
+});
