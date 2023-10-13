@@ -38,6 +38,7 @@ document.querySelector('#room-name-submit').addEventListener('click', async func
     createRoom(cleanedName, randomC);
 });
 
+// create room
 async function createRoom(cleanedName, randomC) {
     const chatModal = document.querySelector('.chat-modal-container');
     try {
