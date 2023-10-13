@@ -11,7 +11,7 @@ global-styling:
       css/style.css: {}
       # css/colors.css: {}
 global-scripts:
-  version: 3.1
+  version: 3.2
   js: 
     js/main.js: {}
     # js/navmenu.js: {}   
