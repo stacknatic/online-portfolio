@@ -317,7 +317,6 @@ goUP.addEventListener('click', goUp)
 //native share
 
 const currentURL = window.location.href;
-
 const shareData = {
   title: document.title,
   text: document.title,
@@ -325,13 +324,17 @@ const shareData = {
 }
 
 const btn = document.getElementById('share-button');
-const resultPara = document.querySelector(".share-result");
 
-btn.addEventListener("click", async () => {
-    try {
-      await navigator.share(shareData);
-      resultPara.textContent = "Shared successfully";
-    } catch (err) {
-      resultPara.textContent = 'Share failed';
+if (btn !== null) {
+
+  function shareContent() {
+    if (navigator.share) {
+      navigator.share(shareData)
+      .catch((err) => console.error('Error sharing: ', err));
+    } else {
+      alert("Share failed.");
     }
-});
+  }
+}
+  
+  btn.addEventListener('click', shareContent);
