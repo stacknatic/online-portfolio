@@ -327,14 +327,11 @@ const shareData = {
 const btn = document.getElementById('share-button');
 
 async function shareContent() {
-  try {
-    if (navigator.share) {
+    try {
       await navigator.share(shareData);
-    } else {
-      alert("Web Share API is not supported in this browser.");
     }
-  } catch (err) {
-    return null;
+    catch (err) {
+    alert("Share failed.");
   }
 }
 
