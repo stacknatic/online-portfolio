@@ -30,3 +30,5 @@
 ![Alt text](themes/contrib/portfolio_two/images/portfolio-mobile.png)
 
 ![Alt text](themes/contrib/portfolio_two/images/portfolio-mobile-2.png)
+
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=stacknatic_online-portfolio)](https://sonarcloud.io/summary/new_code?id=stacknatic_online-portfolio)
